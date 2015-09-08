@@ -16,5 +16,8 @@
 !/log/.keep
 /tmp
 
-# Ignore swp files
+# Ignore swp files.
 *.swp
+
+# Ignore Spring files.
+/spring/*.pid
