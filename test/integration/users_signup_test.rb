@@ -27,5 +27,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     # because we used post_via_redirect we followed a successful redirect to users/show template
     assert_template 'users/show'
+    assert is_logged_in?
   end
 end
