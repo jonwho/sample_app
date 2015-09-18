@@ -8,7 +8,10 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password # requirement to use this method is bcrypt gem and password_digest column in the model
-  validates :password, presence: true, length: { minimum: 6 }
+  # has_secure_password inclues a separate presence validation on object creation so allowing nil
+  # on password validation is ok for the purpose we want where a user can edit his name and email
+  # from the edit path. in production will have to remove this laziness
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)
